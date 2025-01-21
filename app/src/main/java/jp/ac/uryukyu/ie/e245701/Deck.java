@@ -5,10 +5,13 @@ import java.util.Collections;
 
 public class Deck {
     private ArrayList<Card> deck;
+    private ArrayList<Card> hand;
 
     public Deck() {
         deck = new ArrayList<>();
         mkDeck();
+        hand = new ArrayList<>();
+        dealCards();
     }
 
     public void mkDeck() {
@@ -20,11 +23,19 @@ public class Deck {
             }
         }
         Collections.shuffle(deck);
-        System.out.println(deck);
+        //System.out.println(deck);
     }
 
     public ArrayList<Card> getDeck() {
         return deck;
+    }
+
+    public void dealCards() {
+        for (int i=0; i<=4; i++) {
+            Card item = deck.get(i);
+            hand.add(item);
+        }
+        System.out.println(hand);
     }
 }
 
