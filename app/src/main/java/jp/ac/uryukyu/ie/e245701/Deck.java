@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 public class Deck {
     private ArrayList<Card> deck;
-    private ArrayList<Card> hand;
+    private ArrayList<Card> firstHand;
+    private ArrayList<Card> secondHand;
 
     public Deck() {
         deck = new ArrayList<>();
         mkDeck();
-        hand = new ArrayList<>();
+        firstHand = new ArrayList<>();
         dealCards();
         gameMaster();
     }
@@ -25,7 +26,7 @@ public class Deck {
             }
         }
         Collections.shuffle(deck);
-        //System.out.println(deck);
+        System.out.println(deck);
     }
 
     public ArrayList<Card> getDeck() {
@@ -35,24 +36,35 @@ public class Deck {
     public void dealCards() {
         for (int i=0; i<=4; i++) {
             Card item = deck.get(i);
-            hand.add(item);
+            firstHand.add(item);
         }
-        System.out.println(hand);
+        System.out.println(firstHand);
     }
 
     public void gameMaster() {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Integer>number = new ArrayList<>();
+        ArrayList<Integer>numbers = new ArrayList<>();
+        secondHand = new ArrayList<>();
         
-        System.out.println("交換する枚数を入力してください");
+        System.out.println("残したい枚数を入力してください");
         int choice = scanner.nextInt();
         for (int i=0; i<choice; i++) {
-            System.out.println("交換するカードを選んでください 左から[1,2,3,4,5]");
+            System.out.println("残すカードを選んでください 左から[1,2,3,4,5]");
             int j = scanner.nextInt();
             int choose = j - 1;
-            number.add(choose);
+            numbers.add(choose);
         }
-        System.out.println(number);
+
+        for (int number : numbers) {
+            Card item = deck.get(number);
+            secondHand.add(item);
+        }
+
+        for (int i=5; i<=9-choice; i++) {
+            Card item = deck.get(i);
+            secondHand.add(item);
+        }
+        System.out.println(secondHand);
     }
 
 }
